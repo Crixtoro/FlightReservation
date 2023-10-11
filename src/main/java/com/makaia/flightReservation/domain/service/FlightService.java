@@ -20,7 +20,7 @@ public class FlightService {
         return (List<Flight>) flightRepository.getAll();
     }
 
-   /* public Optional<Iterable<Flight>> findById(String codeFlight) {
-        return Optional.of(flightCrudRepository.findAllById(List.of(codeFlight)));
-    }*/
+    public Optional<Flight> searchFlight(String codeFlight) {
+        return flightRepository.searchFlight(codeFlight);
+    }
 }
