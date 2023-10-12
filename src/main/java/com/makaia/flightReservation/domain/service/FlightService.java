@@ -3,8 +3,11 @@ package com.makaia.flightReservation.domain.service;
 import com.makaia.flightReservation.persistence.FlightRepository;
 import com.makaia.flightReservation.persistence.entity.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -25,5 +28,11 @@ public class FlightService {
         return flightRepository.save(flight);
     }
 
+    public boolean delete(String codeFlight) {
+        return searchFlight(codeFlight).map(code -> {
+            flightRepository.delete(codeFlight);
+            return true;
+        }) .orElse(false);
+    }
 
 }

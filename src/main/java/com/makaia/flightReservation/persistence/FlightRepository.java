@@ -3,7 +3,6 @@ package com.makaia.flightReservation.persistence;
 import com.makaia.flightReservation.persistence.crud.FlightCrudRepository;
 import com.makaia.flightReservation.persistence.entity.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -28,5 +27,15 @@ public class FlightRepository {
     public Flight save(Flight flight) {
         return flightCrudRepository.save(flight);
     }
+
+    public void delete(String codeFlight) {
+        flightCrudRepository.deleteById(codeFlight);
+    }
+
+    /*public Page<Flight> findByCriteria(String origin, String destination, LocalDateTime departureDate, Pageable pageable) {
+        return flightPagingAndSortingRepository.
+                findByOriginAndDestinationAndDepartureDate(origin, destination, departureDate, pageable);
+    }*/
+
 
 }

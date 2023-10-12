@@ -4,10 +4,13 @@ import com.makaia.flightReservation.domain.service.FlightCodeGenerator;
 import com.makaia.flightReservation.domain.service.FlightService;
 import com.makaia.flightReservation.persistence.entity.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Pageable;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,11 +39,6 @@ public class FlightController {
         }
     }
 
-    /*@PostMapping("/flight")
-    public ResponseEntity<Flight> save(@RequestBody Flight flight) {
-        return new ResponseEntity<>(flightService.save(flight), HttpStatus.CREATED);
-    }*/
-
     @PostMapping("/flight")
     public ResponseEntity<Flight> save(@RequestBody Flight flight) {
 
@@ -50,4 +48,21 @@ public class FlightController {
         flight.setCodeFlight(id);
         return new ResponseEntity<>(flightService.save(flight), HttpStatus.CREATED);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity delete(@PathVariable("id") String codeFlight) {
+        if(flightService.delete(codeFlight)) {
+            return new ResponseEntity(HttpStatus.OK);
+        } else {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    /*@GetMapping("/search")
+    public Page<Flight> findByCriteria(@RequestParam("origin") String origin,
+                                       @RequestParam("destination") String destination,
+                                       @RequestParam("departureDate") LocalDateTime departureDate,
+                                       Pageable pageable) {
+        return flightService.findByCriteria(origin, destination, departureDate, pageable);
+    }*/
 }
