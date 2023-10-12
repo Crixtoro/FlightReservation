@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class Flight {
 
     @Id
-    @Column(name = "code_flight")
+    @Column(name = "code_flight", nullable = true)
     private String codeFlight;
 
     @Column(name = "code_reservation", nullable = false)

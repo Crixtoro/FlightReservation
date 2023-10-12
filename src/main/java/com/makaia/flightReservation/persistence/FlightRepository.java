@@ -24,4 +24,9 @@ public class FlightRepository {
         return flightCrudRepository.findById(codeFlight);
     }
 
+    //Método para guardar un vuelo
+    public Flight save(Flight flight) {
+        return flightCrudRepository.save(flight);
+    }
+
 }
