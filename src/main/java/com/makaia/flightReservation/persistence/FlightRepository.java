@@ -3,8 +3,11 @@ package com.makaia.flightReservation.persistence;
 import com.makaia.flightReservation.persistence.crud.FlightCrudRepository;
 import com.makaia.flightReservation.persistence.entity.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,10 +35,10 @@ public class FlightRepository {
         flightCrudRepository.deleteById(codeFlight);
     }
 
-    /*public Page<Flight> findByCriteria(String origin, String destination, LocalDateTime departureDate, Pageable pageable) {
-        return flightPagingAndSortingRepository.
-                findByOriginAndDestinationAndDepartureDate(origin, destination, departureDate, pageable);
-    }*/
+    public Page<Flight> findByCriteria(String origin, String destination, Pageable pageable) {
+        return flightCrudRepository. findByOriginAndDestination
+                (origin, destination,pageable);
+    }
 
 
 }

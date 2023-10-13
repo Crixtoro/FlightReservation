@@ -5,12 +5,12 @@ import com.makaia.flightReservation.domain.service.FlightService;
 import com.makaia.flightReservation.persistence.entity.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Pageable;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,11 +58,14 @@ public class FlightController {
         }
     }
 
-    /*@GetMapping("/search")
-    public Page<Flight> findByCriteria(@RequestParam("origin") String origin,
-                                       @RequestParam("destination") String destination,
-                                       @RequestParam("departureDate") LocalDateTime departureDate,
-                                       Pageable pageable) {
-        return flightService.findByCriteria(origin, destination, departureDate, pageable);
-    }*/
+    @GetMapping("/search")
+    public ResponseEntity <Page<Flight>> searchByCriteria(
+            @RequestParam("origin") String origin,
+            @RequestParam("destination") String destination,
+            @RequestParam(value = "page", defaultValue = "0") Integer page,
+            @RequestParam(value = "size", defaultValue = "10") Integer size
+    ) {
+        Pageable pageable = PageRequest.of(page, size);
+        return new ResponseEntity<>(flightService.searchByCriteria(origin,destination,pageable),HttpStatus.OK);
+    }
 }

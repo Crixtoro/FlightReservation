@@ -4,9 +4,10 @@ import com.makaia.flightReservation.persistence.FlightRepository;
 import com.makaia.flightReservation.persistence.entity.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Pageable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -35,4 +36,8 @@ public class FlightService {
         }) .orElse(false);
     }
 
+    public Page<Flight> searchByCriteria(String origin, String destination, Pageable pageable) {
+
+        return  flightRepository.findByCriteria(origin,destination,pageable);
+    }
 }
