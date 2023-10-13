@@ -52,9 +52,9 @@ public class FlightController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity delete(@PathVariable("id") String codeFlight) {
         if(flightService.delete(codeFlight)) {
-            return new ResponseEntity(HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         } else {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 

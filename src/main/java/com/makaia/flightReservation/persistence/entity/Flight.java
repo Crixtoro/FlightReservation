@@ -1,11 +1,13 @@
 package com.makaia.flightReservation.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
-@Entity                     //Con esta anotación indicamos que la clase es una entidad JPA
+@Entity                      //Con esta anotación indicamos que la clase es una entidad JPA
 @Table(name = "flights")     //Especifica el nombre de la tabla de la base de datos que representa la entidad
 public class Flight {
 
@@ -13,6 +15,7 @@ public class Flight {
     @Column(name = "code_flight", nullable = true)
     private String codeFlight;
 
+    @JsonIgnore
     @Column(name = "code_reservation", nullable = false)
     private String codeReservation;
 
@@ -43,7 +46,12 @@ public class Flight {
     private Airline airline;
 
     @NotNull
+    @JsonIgnore
     private Boolean stopover;
+
+    // Generamos las relaciones entre tablas
+    @OneToMany(mappedBy = "flight")
+    private List<Reservation> reservationList;
 
     //-----------------------------------------------------
     // Generamos los Getter and Setter
