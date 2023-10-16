@@ -15,10 +15,6 @@ public class Flight {
     @Column(name = "code_flight", nullable = true)
     private String codeFlight;
 
-    @JsonIgnore
-    @Column(name = "code_reservation", nullable = false)
-    private String codeReservation;
-
     @Column(name = "origin", nullable = false)
     private String origin;
 
@@ -62,14 +58,6 @@ public class Flight {
 
     public void setCodeFlight(String codeFlight) {
         this.codeFlight = codeFlight;
-    }
-
-    public String getCodeReservation() {
-        return codeReservation;
-    }
-
-    public void setCodeReservation(String codeReservation) {
-        this.codeReservation = codeReservation;
     }
 
     public String getOrigin() {

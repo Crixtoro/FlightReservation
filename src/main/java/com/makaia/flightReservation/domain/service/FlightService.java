@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
 
 @Service
@@ -38,4 +37,5 @@ public class FlightService {
 
         return  flightRepository.findByCriteria(origin,destination,pageable);
     }
+
 }
