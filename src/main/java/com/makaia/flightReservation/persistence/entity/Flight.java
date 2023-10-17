@@ -1,6 +1,5 @@
 package com.makaia.flightReservation.persistence.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -42,7 +41,6 @@ public class Flight {
     private Airline airline;
 
     @NotNull
-    @JsonIgnore
     private Boolean stopover;
 
     // Generamos las relaciones entre tablas

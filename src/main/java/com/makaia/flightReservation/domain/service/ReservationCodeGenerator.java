@@ -8,7 +8,7 @@ import java.util.Map;
 @Service
 public class ReservationCodeGenerator {
     private Map<String, Integer> counterReservationCode = new HashMap<>();
-    public String generateResevationCode() {
+    public String generateReservationCode() {
         String code = "FDGSI";
 
         Integer counter = counterReservationCode.get(code);
@@ -19,6 +19,11 @@ public class ReservationCodeGenerator {
             }
         counterReservationCode.put(code, counter);
         return String.format("%s%02d", code, counter);
+    }
+
+    public void deleteReservationCode() {
+        // Obtenemos la clave del último elemento
+       counterReservationCode.remove(counterReservationCode.keySet().iterator().next());
     }
 
 }

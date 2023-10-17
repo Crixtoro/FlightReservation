@@ -13,15 +13,17 @@ public class ReservationValidator {
     @Autowired
     private ReservationService reservationService;
 
-    public boolean reservationCheck(String codeFlight, LocalDateTime reservationDate) {
+
+    public boolean reservationCheck(Reservation reservation) {
+        String codeFlight = reservation.getCodeFlight();
+        System.out.println(codeFlight);
         if(reservationService.existsByCodeFlight(codeFlight)) {
             System.out.println("Entro");
             LocalDateTime departureDate = reservationService.findDepartureDateByCodeFlight(codeFlight);
 
-            if (departureDate.isAfter(reservationDate.plusHours(3))) {
+            if (departureDate.isAfter(reservation.getReservationDate().plusHours(3))) {
                 //validamos si hay sillas disponibles
                 Integer flightSeats = reservationService.findNumberOfSeatsByCodeFlight(codeFlight);
-                System.out.println(flightSeats);
                 List<Reservation> reservationList = reservationService.findByCodeFlight(codeFlight);
 
                 return (flightSeats - (reservationList.size()) > 0);
@@ -34,4 +36,24 @@ public class ReservationValidator {
         }
     }
 
+
+    /*public boolean reservationCheck(String codeFlight, LocalDateTime reservationDate) {
+        if(reservationService.existsByCodeFlight(codeFlight)) {
+            System.out.println("Entro");
+            LocalDateTime departureDate = reservationService.findDepartureDateByCodeFlight(codeFlight);
+
+            if (departureDate.isAfter(reservationDate.plusHours(3))) {
+                //validamos si hay sillas disponibles
+                Integer flightSeats = reservationService.findNumberOfSeatsByCodeFlight(codeFlight);
+                List<Reservation> reservationList = reservationService.findByCodeFlight(codeFlight);
+
+                return (flightSeats - (reservationList.size()) > 0);
+
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }*/
 }

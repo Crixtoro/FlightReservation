@@ -15,7 +15,7 @@ public interface ReservationCrudRepository extends JpaRepository<Reservation, St
     boolean existsByCodeFlight(String codeFlight);
     @Query(value = "SELECT flights.available_seats FROM reservation INNER JOIN flights ON reservation.code_flight = flights.code_flight WHERE reservation.code_flight = :codeFlight", nativeQuery = true)
     Integer findNumberOfSeatsByCodeFlight(@Param("codeFlight") String codeFlight);
-
     @Query(value = "SELECT flights.departure_date FROM reservation INNER JOIN flights ON reservation.code_flight = flights.code_flight WHERE reservation.code_flight = :codeFlight LIMIT 1", nativeQuery = true)
     LocalDateTime findDepartureDateByCodeFlight(@Param("codeFlight") String codeFlight);
+    //List<Reservation> findByUserId(Integer userId);
 }

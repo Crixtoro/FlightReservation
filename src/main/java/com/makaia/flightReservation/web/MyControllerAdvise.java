@@ -15,4 +15,6 @@ public class MyControllerAdvise {
     public String handleDataIntegrityViolation(DataIntegrityViolationException ex) {
         return "No es posible generar la reserva ya que el vuelo no existe " + ex.getMessage();
     }
+
+
 }

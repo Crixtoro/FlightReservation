@@ -9,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -55,54 +54,18 @@ public class ReservationController {
     @PostMapping("/code")
     public ResponseEntity<Reservation> save(@RequestBody Reservation reservation) {
 
-        String codeFlight = reservation.getCodeFlight();
-        System.out.println(codeFlight);
-        LocalDateTime reservationDate = reservation.getReservationDate();
-        System.out.println(reservationDate);
-
-        reservation.setCodeReservation(reservationCodeGenerator.generateResevationCode());
-        Reservation reservation1 = reservationService.save(reservation);
-
-        if(reservationValidator.reservationCheck(codeFlight, reservationDate)) {
-            System.out.println("Cumple");
-            return new ResponseEntity<>(reservation1, HttpStatus.CREATED);
+        if(reservationValidator.reservationCheck(reservation)) {
+            reservation.setCodeReservation(reservationCodeGenerator.generateReservationCode());
+            return new ResponseEntity<>(reservationService.save(reservation), HttpStatus.CREATED);
         } else {
-            System.out.println("No cumple");
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-
-        //reservation.setCodeReservation(reservationCodeGenerator.generateResevationCode());
-
-        //Reservation reservation1 = reservationService.save(reservation);
-
-
-
-
-        // Generamos un código único para cada reserva
-
-        //Generamos una reserva
-
-        //Verificamos si el vuelo existe
-        //String message = existsByCodeFlight(reservation1.getCodeFlight()) ? "Ok" : "Not found";
-        //System.out.println(message);
-        //String message1 = reservationService.isSeatAvailable(reservation1.getCodeFlight()) ? "hay sillas" : "No hay silla";
-
-        //System.out.println(reservationService.findNumberOfSeatsByCodeFlight("AV 0001"));
-
-        //LocalDateTime departureDate = reservationService.findDepartureDateByCodeFlight("AV 0001");
-        //System.out.println(departureDate);
-
-        //LocalDateTime reservationDate = reservation1.getReservationDate();
-        //System.out.println(reservationDate);
-
-        //boolean isAfterThreeHours = departureDate.isAfter(reservationDate.minusHours(3));
-        //System.out.println(isAfterThreeHours);
-
-        //Obtenemos código reserva
-        //System.out.println(reservation1.getCodeReservation());
-
-        //return new ResponseEntity<>(reservation1, HttpStatus.CREATED);
-
     }
+
+
+    /*@GetMapping("/users/{id}")
+    public ResponseEntity<List<Reservation>> findByUserId(Integer userId) {
+        return new ResponseEntity<>(reservationService.findByUserId(userId),HttpStatus.FOUND);
+    }*/
 
 }
