@@ -14,7 +14,7 @@ public class ReservationValidator {
     private ReservationService reservationService;
 
 
-    public boolean reservationCheck(Reservation reservation) {
+    /*public boolean reservationCheck(Reservation reservation) {
         String codeFlight = reservation.getCodeFlight();
         System.out.println(codeFlight);
         if(reservationService.existsByCodeFlight(codeFlight)) {
@@ -34,10 +34,10 @@ public class ReservationValidator {
         } else {
             return false;
         }
-    }
+    }*/
 
 
-    /*public boolean reservationCheck(String codeFlight, LocalDateTime reservationDate) {
+    public boolean reservationCheck(String codeFlight, LocalDateTime reservationDate) {
         if(reservationService.existsByCodeFlight(codeFlight)) {
             System.out.println("Entro");
             LocalDateTime departureDate = reservationService.findDepartureDateByCodeFlight(codeFlight);
@@ -55,5 +55,5 @@ public class ReservationValidator {
         } else {
             return false;
         }
-    }*/
+    }
 }

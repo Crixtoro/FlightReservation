@@ -24,6 +24,7 @@ public class ReservationCodeGenerator {
     public void deleteReservationCode() {
         // Obtenemos la clave del último elemento
        counterReservationCode.remove(counterReservationCode.keySet().iterator().next());
+
     }
 
 }

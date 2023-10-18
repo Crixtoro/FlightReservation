@@ -1,5 +1,7 @@
 package com.makaia.flightReservation.persistence.entity;
 
+import org.jetbrains.annotations.NotNull;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,20 +11,26 @@ public class User {
 
     @Id
     @Column(name = "id_user")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUser;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idUser;
 
+    @NotNull
     private String name;
+    @NotNull
     private String email;
+    @NotNull
     private String password;
-    @OneToMany(mappedBy = "user")
-    private List<Reservation> reservationList;
 
-    public int getIdUser() {
+    @OneToMany(mappedBy = "user")
+    private List<Reservation> reservations;
+
+    //Generamos Getter and Setter
+
+    public Integer getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(Integer idUser) {
         this.idUser = idUser;
     }
 
@@ -48,5 +56,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
     }
 }

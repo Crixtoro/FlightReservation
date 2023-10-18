@@ -19,12 +19,12 @@ public class UserRepository {
     }
 
     //Borramos un usuario por su id
-    public void delete(int idUser) {
+    public void delete(Integer idUser) {
         userCrudRepository.deleteById(idUser);
     }
 
     //Buscamos un usuario por su id
-    public Optional<User> searchById(int idUser) {
+    public Optional<User> searchById(Integer idUser) {
         return userCrudRepository.findById(idUser);
     }
 
@@ -33,7 +33,7 @@ public class UserRepository {
         return (List<User>) userCrudRepository.findAll();
     }
 
-    public boolean existsById(int idUser){
+    public boolean existsById(Integer idUser){
         return userCrudRepository.existsById(idUser);
     }
 

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -54,13 +55,18 @@ public class ReservationController {
     @PostMapping("/code")
     public ResponseEntity<Reservation> save(@RequestBody Reservation reservation) {
 
-        if(reservationValidator.reservationCheck(reservation)) {
-            reservation.setCodeReservation(reservationCodeGenerator.generateReservationCode());
+        reservation.setCodeReservation(reservationCodeGenerator.generateReservationCode());
+        Reservation reservation1 = reservationService.save(reservation);
+        String codeFlight = reservation.getCodeFlight();
+        LocalDateTime reservationDate= reservation1.getReservationDate();
+
+        if(reservationValidator.reservationCheck(codeFlight, reservationDate)) {
             return new ResponseEntity<>(reservationService.save(reservation), HttpStatus.CREATED);
         } else {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
+
 
 
     /*@GetMapping("/users/{id}")

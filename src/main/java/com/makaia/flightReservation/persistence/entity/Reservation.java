@@ -22,10 +22,14 @@ public class Reservation {
     @Column(name = "code_flight", nullable = false)
     private String codeFlight;
 
-    @JsonIgnore
+    @Column(name = "id_user", nullable = true)
+    private Integer idUser;
+
+
     @ManyToOne
     @JoinColumn(name = "code_flight", insertable = false, updatable = false)
     private Flight flight;
+
 
     @ManyToOne
     @JoinColumn(name = "id_user", insertable = false, updatable = false)
@@ -33,7 +37,6 @@ public class Reservation {
 
     //---------------------------------------------------------------------
     // Generamos los getter and setter
-
     public String getCodeReservation() {
         return codeReservation;
     }
@@ -64,6 +67,14 @@ public class Reservation {
 
     public void setCodeFlight(String codeFlight) {
         this.codeFlight = codeFlight;
+    }
+
+    public Integer getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Integer idUser) {
+        this.idUser = idUser;
     }
 
     public Flight getFlight() {

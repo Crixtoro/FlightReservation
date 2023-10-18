@@ -19,7 +19,7 @@ public class UserService {
     }
 
     //Borramos un usuario por su id
-    public boolean delete(int idUser) {
+    public boolean delete(Integer idUser) {
         if(existsById(idUser)) {
             userRepository.delete(idUser);
             return true;
@@ -27,7 +27,7 @@ public class UserService {
     }
 
     //Buscamos un usuario por su id
-    public Optional<User> searchById(int idUser) {
+    public Optional<User> searchById(Integer idUser) {
         return userRepository.searchById(idUser);
     }
 
@@ -36,7 +36,7 @@ public class UserService {
         return (List<User>) userRepository.getAll();
     }
 
-    public boolean existsById(int idUser){
+    public boolean existsById(Integer idUser){
         return userRepository.existsById(idUser);
     }
 

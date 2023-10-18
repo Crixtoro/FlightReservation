@@ -2,7 +2,6 @@ package com.makaia.flightReservation.web;
 
 import com.makaia.flightReservation.domain.service.UserService;
 import com.makaia.flightReservation.persistence.entity.User;
-import org.mapstruct.control.MappingControl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +23,7 @@ public class UserController {
     }
 
     @GetMapping("/search/{id}")
-    public ResponseEntity<Optional<User>> searchById(@PathVariable("id") int idUser) {
+    public ResponseEntity<Optional<User>> searchById(@PathVariable("id") Integer idUser) {
         Optional<User> user = userService.searchById(idUser);
         if(user.isPresent()) {
             return new ResponseEntity<>(user, HttpStatus.FOUND);
@@ -32,7 +31,7 @@ public class UserController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity delete(@PathVariable("id") int idUser) {
+    public ResponseEntity delete(@PathVariable("id") Integer idUser) {
         if(userService.delete(idUser)) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else return new ResponseEntity<>(HttpStatus.NOT_FOUND);
