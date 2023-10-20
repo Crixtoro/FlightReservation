@@ -24,7 +24,14 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Reservation> reservations;
 
-    //Generamos Getter and Setter
+    public User(Integer idUser, @NotNull String name, @NotNull String email, @NotNull String password) {
+        this.idUser = idUser;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
+//Generamos Getter and Setter
 
     public Integer getIdUser() {
         return idUser;
