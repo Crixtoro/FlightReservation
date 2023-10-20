@@ -32,6 +32,10 @@ dependencies {
 	//Dependencia de Mockito
 	repositories { mavenCentral() }
 	dependencies { testImplementation "org.mockito:mockito-core:3.+" }
+
+	//Dependencias documentación Swagger
+	implementation 'org.springdoc:springdoc-openapi-ui:1.7.0'
+	//Ruta http://localhost:8090/v1/swagger-ui/index.html
 }
 
 tasks.named('test') {
