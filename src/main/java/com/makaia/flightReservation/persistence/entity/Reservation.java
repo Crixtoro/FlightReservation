@@ -28,6 +28,7 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "code_flight", insertable = false, updatable = false)
+    @JsonIgnore
     private Flight flight;
 
 

@@ -14,11 +14,11 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idUser;
 
-    @NotNull
+    @Column(nullable = false)
     private String name;
-    @NotNull
+    @Column(nullable = false)
     private String email;
-    @NotNull
+    @Column(nullable = false)
     private String password;
 
     @OneToMany(mappedBy = "user")

@@ -17,7 +17,7 @@ public class Flight {
     @Column(name = "origin", nullable = false)
     private String origin;
 
-    @NotNull
+    @Column(nullable = false)
     private String destination;
 
     @Column(name = "departure_date", nullable = false)
@@ -26,7 +26,7 @@ public class Flight {
     @Column(name = "arrival_date", nullable = false)
     private LocalDateTime arrivalDate;
 
-    @NotNull
+    @Column(nullable = false)
     private Double price;
 
     @Column(name = "available_seats", nullable = false)
@@ -36,11 +36,11 @@ public class Flight {
     @Enumerated(EnumType.STRING)
     private SelectFlightType selectFlightType;
 
-    @NotNull
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Airline airline;
 
-    @NotNull
+    @Column(nullable = false)
     private Boolean stopover;
 
     // Generamos las relaciones entre tablas
