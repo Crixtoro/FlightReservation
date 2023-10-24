@@ -1,7 +1,7 @@
 package com.makaia.flightReservation.persistence;
 
 import com.makaia.flightReservation.persistence.crud.UserCrudRepository;
-import com.makaia.flightReservation.web.controller.User;
+import com.makaia.flightReservation.persistence.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

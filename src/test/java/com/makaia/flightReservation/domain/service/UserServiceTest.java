@@ -1,7 +1,7 @@
 package com.makaia.flightReservation.domain.service;
 
 import com.makaia.flightReservation.persistence.UserRepository;
-import com.makaia.flightReservation.web.controller.User;
+import com.makaia.flightReservation.persistence.entity.User;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

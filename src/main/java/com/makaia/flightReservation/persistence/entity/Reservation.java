@@ -1,7 +1,6 @@
 package com.makaia.flightReservation.persistence.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.makaia.flightReservation.web.controller.User;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

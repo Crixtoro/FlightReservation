@@ -1,6 +1,7 @@
 package com.makaia.flightReservation.web.controller;
 
 import com.makaia.flightReservation.domain.service.UserService;
+import com.makaia.flightReservation.persistence.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
