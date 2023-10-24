@@ -1,4 +1,4 @@
-package com.makaia.flightReservation.web;
+package com.makaia.flightReservation.web.controller;
 
 import com.makaia.flightReservation.domain.service.FlightCodeGenerator;
 import com.makaia.flightReservation.domain.service.FlightService;
@@ -50,7 +50,7 @@ public class FlightController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity delete(@PathVariable("id") String codeFlight) {
+    public ResponseEntity<Void> delete(@PathVariable("id") String codeFlight) {
         if(flightService.delete(codeFlight)) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {

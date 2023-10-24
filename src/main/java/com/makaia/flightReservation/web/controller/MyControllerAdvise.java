@@ -1,4 +1,4 @@
-package com.makaia.flightReservation.web;
+package com.makaia.flightReservation.web.controller;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;

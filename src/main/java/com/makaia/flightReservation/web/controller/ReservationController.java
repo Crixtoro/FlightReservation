@@ -1,4 +1,4 @@
-package com.makaia.flightReservation.web;
+package com.makaia.flightReservation.web.controller;
 
 import com.makaia.flightReservation.domain.service.ReservationCodeGenerator;
 import com.makaia.flightReservation.domain.service.ReservationService;

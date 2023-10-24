@@ -1,5 +1,6 @@
-package com.makaia.flightReservation.persistence.entity;
+package com.makaia.flightReservation.web.controller;
 
+import com.makaia.flightReservation.persistence.entity.Reservation;
 import org.jetbrains.annotations.NotNull;
 
 import javax.persistence.*;
@@ -23,13 +24,6 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Reservation> reservations;
-
-    public User(Integer idUser, @NotNull String name, @NotNull String email, @NotNull String password) {
-        this.idUser = idUser;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
 
 //Generamos Getter and Setter
 
