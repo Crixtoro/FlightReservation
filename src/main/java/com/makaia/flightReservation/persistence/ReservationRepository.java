@@ -41,7 +41,7 @@ public class ReservationRepository {
     public LocalDateTime findDepartureDateByCodeFlight(String codeFlight) {
         return reservationCrudRepository.findDepartureDateByCodeFlight(codeFlight);
     }
-    /*public List<Reservation> findByUserId(Integer userId){
-        return reservationCrudRepository.findByUserId(userId);
-    }*/
+    public List<Reservation> findByIdUser(Integer idUser){
+        return reservationCrudRepository.findByIdUser(idUser);
+    }
 }

@@ -69,9 +69,9 @@ public class ReservationController {
 
 
 
-    /*@GetMapping("/users/{id}")
-    public ResponseEntity<List<Reservation>> findByUserId(Integer userId) {
-        return new ResponseEntity<>(reservationService.findByUserId(userId),HttpStatus.FOUND);
-    }*/
+    @GetMapping("/users/{id}")
+    public ResponseEntity<List<Reservation>> findByIdUser(Integer idUser) {
+        return new ResponseEntity<>(reservationService.findByIdUser(idUser),HttpStatus.FOUND);
+    }
 
 }

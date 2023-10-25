@@ -3,6 +3,7 @@ package com.makaia.flightReservation.domain.service;
 import com.makaia.flightReservation.persistence.ReservationRepository;
 import com.makaia.flightReservation.persistence.entity.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ public class ReservationService {
 
     @Autowired
     private ReservationRepository reservationRepository;
+
 
     public Reservation save(Reservation reservation) {
         return reservationRepository.save(reservation);
@@ -30,6 +32,7 @@ public class ReservationService {
         return reservationRepository.existsById(codeReservation);
     }
 
+    @Secured("ROLE_ADMIN")
     public boolean delete(String codeReservation){
         if(existsById(codeReservation)) {
             reservationRepository.delete(codeReservation);
@@ -47,7 +50,8 @@ public class ReservationService {
         return reservationRepository.findDepartureDateByCodeFlight(codeFlight);
     }
 
-    /*public List<Reservation> findByUserId(Integer userId) {
-        return reservationRepository.findByUserId(userId);
-    }*/
+    @Secured("ROLE_ADMIN")
+    public List<Reservation> findByIdUser(Integer idUser) {
+        return reservationRepository.findByIdUser(idUser);
+    }
 }

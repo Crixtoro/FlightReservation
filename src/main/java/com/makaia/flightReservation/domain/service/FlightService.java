@@ -5,6 +5,7 @@ import com.makaia.flightReservation.persistence.entity.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
@@ -22,10 +23,12 @@ public class FlightService {
         return flightRepository.searchFlight(codeFlight);
     }
 
+    @Secured("ROLE_ADMIN")
     public Flight save(Flight flight) {
         return flightRepository.save(flight);
     }
 
+    @Secured("ROLE_ADMIN")
     public boolean delete(String codeFlight) {
         return searchFlight(codeFlight).map(code -> {
             flightRepository.delete(codeFlight);
