@@ -1,4 +1,5 @@
 package com.makaia.flightReservation.persistence.entity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -19,13 +20,14 @@ public class User {
     @Column(nullable = false, length = 200)
     private String password;
 
-    @Column(length = 50)
+    @Column(length = 50, unique = true)
     private String email;
 
     @Enumerated(EnumType.STRING)
     private Rol rol;
 
     @OneToMany(mappedBy = "userReservation")
+    @JsonIgnore
     private List<Reservation> reservations;
 
     public User() {

@@ -22,6 +22,7 @@ public class SecurityConfig {
                     .cors().and()
                     .authorizeHttpRequests()
                     .antMatchers(HttpMethod.GET, "/v1/**").hasAnyRole("ADMIN","CUSTOMER")
+                    .antMatchers(HttpMethod.POST).hasRole("ADMIN")
                     .antMatchers(HttpMethod.PUT).hasRole("ADMIN")
                     .anyRequest()
                     .authenticated()
@@ -39,7 +40,13 @@ public class SecurityConfig {
                 .roles("ADMIN")
                 .build();
 
-        return new InMemoryUserDetailsManager(admin);
+        UserDetails customer = User.builder()
+                .username("customer")
+                .password(passwordEncoder().encode("customer"))
+                .roles("CUSTOMER")
+                .build();
+
+        return new InMemoryUserDetailsManager(admin, customer);
     }
 
     @Bean
