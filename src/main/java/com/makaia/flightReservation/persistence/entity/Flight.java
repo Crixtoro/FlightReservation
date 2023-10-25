@@ -1,18 +1,11 @@
 package com.makaia.flightReservation.persistence.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity                      //Con esta anotación indicamos que la clase es una entidad JPA
 @Table(name = "flights")     //Especifica el nombre de la tabla de la base de datos que representa la entidad
-@Getter
-@Setter
-@NoArgsConstructor
 public class Flight {
 
     @Id

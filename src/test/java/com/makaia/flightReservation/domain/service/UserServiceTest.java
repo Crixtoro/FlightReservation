@@ -26,7 +26,7 @@ class UserServiceTest {
     @Test
     void create_a_new_user() {
 
-        User user = new User(26, "Luis", "luis@mail.com", "ewe23");
+        User user = new User("26", "hssdt223", "luis@mail.com");
 
         when(repository.save(user)).thenReturn(user);
 
@@ -36,7 +36,7 @@ class UserServiceTest {
     @Test
     void delete_a_user() {
 
-        User user = new User(321, "Karol", "Karol@mail.com", "23sdf");
+        User user = new User( "23sdf", "Karol", "Karol@mail.com");
 
         when(service.delete(user.getIdUser())).thenReturn(true);
 
@@ -48,7 +48,7 @@ class UserServiceTest {
     @Test
     void search_a_user_by_id() {
 
-        User user = new User(23, "Pedro", "pedro@mail.com", "23sfdkie");
+        User user = new User("23sfdkie", "Pedro", "pedro@mail.com");
         when(repository.searchById(user.getIdUser())).thenReturn(Optional.of(user));
 
         Optional<User> optionalUser = service.searchById(user.getIdUser());
@@ -62,8 +62,8 @@ class UserServiceTest {
     void get_list_of_users() {
 
             when(repository.getAll()).thenReturn(Stream
-                    .of(new User(1, "pablo", "pablo@mail.com", "1234"),
-                            new User(2, "Pepita", "pepita@mail.com", "4321"))
+                    .of(new User("1234", "pablo", "pablo@mail.com"),
+                            new User("4321", "Pepita", "pepita@mail.com"))
                     .collect((Collectors.toList())));
 
             assertEquals(2,service.getAll().size());
@@ -73,7 +73,7 @@ class UserServiceTest {
     @Test
     void return_true_if_a_user_exists_by_id() {
 
-        User user = new User(242, "Lina", "lina@mail.com", "7hue6");
+        User user = new User("7hue6", "Lina", "lina@mail.com");
 
         when(repository.existsById(user.getIdUser())).thenReturn(true);
         boolean existsId = service.existsById(user.getIdUser());

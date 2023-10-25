@@ -34,7 +34,7 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "id_user", insertable = false, updatable = false)
-    private User user;
+    private User userReservation;
 
     //---------------------------------------------------------------------
     // Generamos los getter and setter
@@ -86,11 +86,11 @@ public class Reservation {
         this.flight = flight;
     }
 
-    public User getUser() {
-        return user;
+    public User getUserReservation() {
+        return userReservation;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserReservation(User userReservation) {
+        this.userReservation = userReservation;
     }
 }
