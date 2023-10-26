@@ -37,5 +37,8 @@ public class UserRepository {
         return userCrudRepository.existsById(idUser);
     }
 
+    public User findByUsername(String username) {
+        return userCrudRepository.findByUsername(username);
+    }
 
 }

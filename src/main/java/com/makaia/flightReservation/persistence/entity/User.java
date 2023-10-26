@@ -20,13 +20,13 @@ public class User {
     @Column(nullable = false, length = 200)
     private String password;
 
-    @Column(length = 50, unique = true)
+    @Column(length = 50)
     private String email;
 
     @Enumerated(EnumType.STRING)
     private Rol rol;
 
-    @OneToMany(mappedBy = "userReservation")
+    @OneToMany(mappedBy = "user")
     @JsonIgnore
     private List<Reservation> reservations;
 

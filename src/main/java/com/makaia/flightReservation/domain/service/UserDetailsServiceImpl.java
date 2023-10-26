@@ -18,17 +18,21 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserCrudRepository userCrudRepository;
 
     // Crea un usuario administrador en memoria
-    UserDetails admin = org.springframework.security.core.userdetails.User.builder()
+    /*UserDetails admin = org.springframework.security.core.userdetails.User.builder()
             .username("admin")
             .password(passwordEncoder().encode("admin"))
             .roles("ADMIN")
-            .build();
+            .build();*/
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         if (username.equals("admin")) {
-            return admin;
+            return org.springframework.security.core.userdetails.User.builder()
+                    .username("admin")
+                    .password(passwordEncoder().encode("admin"))
+                    .roles("ADMIN")
+                    .build();
         } else {
 
             User user = userCrudRepository.findByUsername(username);

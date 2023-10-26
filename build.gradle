@@ -35,7 +35,8 @@ dependencies {
 	dependencies { testImplementation "org.mockito:mockito-core:3.+" }
 
 	//Dependencias documentación Swagger
-	implementation 'org.springdoc:springdoc-openapi-ui:1.7.0'
+	implementation 'io.springfox:springfox-swagger2'
+	implementation 'io.springfox:springfox-swagger-ui'
 	//Ruta http://localhost:8090/v1/swagger-ui/index.html
 
 	//Spring Security

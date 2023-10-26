@@ -39,5 +39,8 @@ public class FlightRepository {
                 (origin, destination,pageable);
     }
 
+    public List<Flight> findByStopoverTrue() {
+        return flightCrudRepository.findByStopoverTrue();
+    }
 
 }

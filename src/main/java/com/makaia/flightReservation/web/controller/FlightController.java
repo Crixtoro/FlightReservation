@@ -9,7 +9,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -31,7 +33,8 @@ public class FlightController {
 
     @GetMapping("{id}")
     public ResponseEntity<Optional<Flight>> searchFlight(@PathVariable("id") String codeFlight) {
-        Optional<Flight> flight = flightService.searchFlight(codeFlight);
+    Optional<Flight> flight = flightService.searchFlight(codeFlight);
+
         if(flight.isPresent()) {
             return ResponseEntity.ok(flight);
         } else {
@@ -39,6 +42,7 @@ public class FlightController {
         }
     }
 
+    @Secured("ROLE_ADMIN")
     @PostMapping("/flight")
     public ResponseEntity<Flight> save(@RequestBody Flight flight) {
 
@@ -67,5 +71,10 @@ public class FlightController {
     ) {
         Pageable pageable = PageRequest.of(page, size);
         return new ResponseEntity<>(flightService.searchByCriteria(origin,destination,pageable),HttpStatus.OK);
+    }
+
+    @GetMapping("/search/stopover")
+    public ResponseEntity <List<Flight>> findByStopoverTrue() {
+        return new ResponseEntity<List<Flight>>(flightService.findByStopoverTrue(),HttpStatus.OK);
     }
 }

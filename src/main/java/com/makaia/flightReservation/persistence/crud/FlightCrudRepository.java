@@ -11,5 +11,8 @@ public interface FlightCrudRepository extends JpaRepository<Flight, String> {
 
     List<Flight> findByOriginAndDestination(String origin, String destination);
     Page<Flight> findByOriginAndDestination(String origin, String destination, Pageable pageable);
+
     Page<Flight> findAll(Pageable pageable);
+
+    List<Flight> findByStopoverTrue();
 }

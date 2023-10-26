@@ -1,5 +1,7 @@
 package com.makaia.flightReservation.persistence.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -9,22 +11,22 @@ import java.util.List;
 public class Flight {
 
     @Id
-    @Column(name = "code_flight", nullable = true)
+    @Column(name = "code_flight", nullable = true, length = 10)
     private String codeFlight;
 
-    @Column(name = "origin", nullable = false)
+    @Column(name = "origin", nullable = false, length = 20)
     private String origin;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private String destination;
 
-    @Column(name = "departure_date", nullable = false)
+    @Column(name = "departure_date", nullable = false, length = 20)
     private LocalDateTime departureDate;
 
-    @Column(name = "arrival_date", nullable = false)
+    @Column(name = "arrival_date", nullable = false, length = 20)
     private LocalDateTime arrivalDate;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "DECIMAL(6,2)")
     private Double price;
 
     @Column(name = "available_seats", nullable = false)
@@ -43,6 +45,7 @@ public class Flight {
 
     // Generamos las relaciones entre tablas
     @OneToMany(mappedBy = "flight")
+    @JsonIgnore
     private List<Reservation> reservationList;
 
     public String getCodeFlight() {

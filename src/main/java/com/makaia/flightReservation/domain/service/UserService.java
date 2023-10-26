@@ -15,11 +15,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Secured("ROLE_ADMIN")
     public User save(User user) {
         return userRepository.save(user);
     }
 
-    @Secured("ROLE_ADMIN")
     //Borramos un usuario por su id
     public boolean delete(Integer idUser) {
         if(existsById(idUser)) {
@@ -29,12 +29,14 @@ public class UserService {
     }
 
     //Buscamos un usuario por su id
+
     @Secured("ROLE_ADMIN")
     public Optional<User> searchById(Integer idUser) {
         return userRepository.searchById(idUser);
     }
 
     //Consultamos todas los usuarios
+
     @Secured("ROLE_ADMIN")
     public List<User> getAll() {
         return (List<User>) userRepository.getAll();

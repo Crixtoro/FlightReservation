@@ -23,12 +23,11 @@ public class FlightService {
         return flightRepository.searchFlight(codeFlight);
     }
 
-    @Secured("ROLE_ADMIN")
     public Flight save(Flight flight) {
         return flightRepository.save(flight);
     }
 
-    @Secured("ROLE_ADMIN")
+
     public boolean delete(String codeFlight) {
         return searchFlight(codeFlight).map(code -> {
             flightRepository.delete(codeFlight);
@@ -37,8 +36,11 @@ public class FlightService {
     }
 
     public Page<Flight> searchByCriteria(String origin, String destination, Pageable pageable) {
-
         return  flightRepository.findByCriteria(origin,destination,pageable);
+    }
+
+    public List<Flight> findByStopoverTrue() {
+        return flightRepository.findByStopoverTrue();
     }
 
 }
